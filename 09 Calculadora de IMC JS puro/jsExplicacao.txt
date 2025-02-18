@@ -1,0 +1,91 @@
+O código trata de uma aplicação para cálculo do Índice de Massa Corporal (IMC). Ele utiliza HTML, CSS e JavaScript para criar uma interface interativa que calcula o IMC do usuário, exibe a classificação correspondente e organiza os dados de IMC em uma tabela. Abaixo está uma explicação detalhada de cada parte:
+
+1. Dados Iniciais (data)
+O array data contém objetos que representam faixas de IMC. Cada objeto inclui:
+
+min e max: limites mínimo e máximo da faixa.
+classification: texto descritivo da faixa.
+info: nome associado à classificação.
+obesity: grau de obesidade.
+Este array é a base para criar a tabela de classificações e para verificar em qual faixa o IMC do usuário se encaixa.
+
+2. Seleção dos Elementos do DOM
+Os elementos HTML são selecionados e armazenados em constantes para facilitar o acesso no código:
+
+imcTable: Elemento onde será criada dinamicamente a tabela com os dados de IMC.
+heightInput e weightInput: Campos de entrada para altura e peso.
+Botões como calcBtn (calcular), clearBtn (limpar) e backBtn (voltar).
+Contêineres e spans usados para exibir resultados e interagir com o layout.
+3. Funções
+3.1 createTable(data)
+Essa função cria dinamicamente a tabela com as classificações de IMC:
+
+Itera sobre o array data.
+Para cada faixa:
+Cria uma div com a classe table-data.
+Adiciona três parágrafos contendo classification, info e obesity.
+Adiciona essa div ao elemento imcTable.
+3.2 clearInputs()
+Limpa os valores dos campos de entrada (heightInput e weightInput) e remove classes aplicadas nos resultados.
+
+3.3 validDigits(text)
+Filtra os caracteres digitados pelo usuário, permitindo apenas números e vírgulas.
+
+3.4 calcImc(weight, height)
+Calcula o IMC usando a fórmula 
+IMC
+=
+peso
+altura
+2
+IMC= 
+altura 
+2
+ 
+peso
+​
+  e retorna o valor arredondado com uma casa decimal.
+
+3.5 showOrHideResults()
+Alterna entre exibir o formulário de cálculo e os resultados, adicionando/removendo a classe hide.
+
+4. Inicialização
+Chama createTable(data) para preencher a tabela de classificações assim que o script é carregado.
+
+5. Eventos
+Os eventos tornam a aplicação interativa:
+
+5.1 Filtragem de Entrada
+Adiciona um input listener nos campos de altura e peso para filtrar caracteres inválidos em tempo real.
+
+5.2 Botão "Calcular"
+Quando clicado:
+
+Converte os valores dos campos para números.
+Verifica se são válidos. Caso contrário, a função é interrompida.
+Calcula o IMC.
+Determina a faixa de classificação correspondente no array data.
+Atualiza os elementos visuais (imcNumber e imcInfo) com o IMC e a classificação.
+Adiciona classes CSS para feedback visual baseado na faixa de classificação.
+Exibe os resultados alternando a visibilidade dos contêineres.
+5.3 Botão "Limpar"
+Limpa os campos de entrada e os estilos visuais dos resultados.
+
+5.4 Botão "Voltar"
+Retorna para a tela inicial, limpando os campos de entrada e alternando a visibilidade.
+
+6. Lógica do Feedback Visual
+Conforme a classificação do IMC, diferentes classes CSS são aplicadas para destacar o resultado:
+
+low: "Magreza" e "Sobrepeso".
+good: "Normal".
+medium: "Obesidade".
+high: "Obesidade grave".
+Isso fornece um indicativo visual claro da situação do usuário.
+
+Fluxo Geral
+O usuário insere peso e altura.
+O script filtra entradas inválidas.
+Ao clicar em "Calcular", o IMC é calculado e exibido junto com a classificação.
+Botões "Limpar" e "Voltar" gerenciam a interação, retornando o formulário ao estado inicial ou ocultando/exibindo os resultados.
+O código é modular, reutilizável e bem organizado, com foco na experiência do usuário.
