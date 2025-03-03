@@ -1,0 +1,167 @@
+/* ------------------------------------------------------------------- */
+/* Geral */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato";
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* imagem fica estática, mas duplicada*/
+/* html {
+  height: 100vh;
+} */
+
+body {
+  background-image: url("../img/bg2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; /*removendo duplicação da img*/
+}
+
+button {
+  background-color: #fdfdfd;
+  color: #440544;
+  border: 1px solid #440544;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+button:hover {
+  background-color: #440544;
+  color: #fff;
+}
+
+button:hover > i {
+  color: #fff;
+}
+
+button > i {
+  color: #440544;
+  font-weight: bold;
+  pointer-events: none; /*desativando evento de click do icone*/
+}
+
+input,
+select {
+  padding: 0.25rem 0.5rem;
+}
+
+.hide {
+  display: none;
+}
+/* ------------------------------------------------------------------- */
+/* To do header */
+.todo-container {
+  max-width: 450px;
+  margin: 5rem auto; /* limitando width e centralizando na tela */
+  background-color: #fdfdfd;
+  padding: 1.5rem;
+  border-radius: 5px;
+}
+
+.todo-container > header {
+  text-align: center;
+  padding: 0 1rem 1rem;
+  border-bottom: 1px solid #ccc;
+}
+/* ------------------------------------------------------------------- */
+/* to do form */
+#todo-form,
+#edit-form {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+#todo-form p,
+#edit-form p {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-control {
+  display: flex; /* botoes ao lado dos inputs */
+}
+
+.form-control input {
+  margin-right: 0.3rem;
+}
+
+#cancel-edit-btn {
+  margin-top: 1rem;
+}
+/* ------------------------------------------------------------------- */
+/* toolbar */
+#toolbar {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+#toolbar h4 {
+  margin-bottom: 0.5rem;
+}
+
+#search {
+  border-right: 1px solid #ddd;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+
+#search form {
+  display: flex;
+}
+
+#search input {
+  width: 100%;
+  margin-right: 0.3rem;
+}
+
+#filter {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+#filter select {
+  flex: 1;
+}
+/* ------------------------------------------------------------------- */
+/* to do list*/
+.todo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  transition: 0.3s;
+}
+
+.todo h3 {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.todo button {
+  margin-left: 0.4rem;
+}
+
+.done {
+  background-color: #ceb2c3;
+}
+
+.done h3 {
+  color: #fff;
+  text-decoration: line-through;
+  font-style: italic;
+}

@@ -1,0 +1,18 @@
+/* --------------------------------------------------------------------------- */
+FUNÇÕES DA TO DO LIST
+/* --------------------------------------------------------------------------- */
+
+// Ações básicas
+(1) Criação e remoção da tarefa
+(2) Completar tarefa
+(3) Excluir tarefa
+(4) Completar e descompletar tarefa
+(5) Editar tarefa
+
+// Ações avançadas
+(6) Busca
+(7) Filtro de tarefas:
+    - feitas
+    - a fazer
+    - todas
+(8) Salvar tudo em Local Store
