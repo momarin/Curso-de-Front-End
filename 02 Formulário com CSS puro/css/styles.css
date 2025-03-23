@@ -1,0 +1,134 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Afacad Flux", sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+body {
+  background-color: #f0ebf8;
+}
+
+h1,
+h2,
+h4,
+h4,
+h5 {
+  color: #333;
+}
+
+p, label {
+    color: #444;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+textarea {
+    width: 100%;
+}
+
+textarea {
+    padding: 10px 5px;
+}
+/* PAGE HEADER */
+.header {
+    height: 160px;
+    padding: 20px;
+    background-color: #6734b7;
+}
+
+.header h3 {
+    color: #fff;
+    margin-top: 0;
+}
+
+/* FORM CONTAINER */
+.form-container {
+    background-color: #fdfdfd;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    top: -62px;
+}
+
+/* FORM HEADER */
+.form-header {
+    border-bottom: 1px solid #dfdfdf;
+    height: 45px;
+}
+
+.form-header p {
+    color: #6734b7;
+    border-bottom: 2px solid #6734b7;
+    width: 100px;
+    text-align: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+    height: 45px;
+    line-height: 45px;
+}
+
+/* FORM BODY */
+.form-body {
+    padding: 30px;
+}
+
+.form-title {
+    margin-bottom: 15px;
+}
+
+.form-body p {
+    margin-bottom: 20px;
+}
+
+.required-field {
+    color: #d80835;
+}
+
+.input-group {
+    margin-bottom: 35px;
+}
+
+.block {
+    display: block;
+}
+
+.optional-input-group {
+    display: inline-block;
+    margin: 0 30px 30px 0;
+}
+
+.optional-list li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.input-group p {
+    margin-bottom: 15px;
+}
+
+.btn-submit {
+    background-color: #6734b7;
+    color: #fff;
+    border: 2px solid transparent;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .5s;
+}
+
+.btn-submit:hover {
+    background-color: #fff;
+    border-color: #6734b7;
+    color: #6734b7;
+}

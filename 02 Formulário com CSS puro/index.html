@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto formulário</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Font Acade Flux -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3>Cadastre seu veículo!</h3>
+      </div>
+
+      <!-- inicio do form -->
+      <div class="form-container">
+        <!-- cabecalho do form -->
+        <div class="form-header">
+          <p>Formulário</p>
+        </div>
+
+        <!-- corpo do form -->
+        <div class="form-body">
+          <h1 class="form-title">Venda seu veículo!</h1>
+          <p>Descreva as características e marque os opcionais:</p>
+
+          <!-- input group -->
+          <form>
+            <div class="input-group">
+              <label for="title"
+                >Título do anúncio <span class="required-field">*</span></label
+              >
+              <input
+                type="text"
+                name="title"
+                id="title"
+                class="block"
+                placeholder="Título de anúncio do seu veículo."
+                minlength="1"
+                maxlength="30"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="price"
+                >Preço: <span class="required-field">*</span></label
+              >
+              <input
+                type="number"
+                name="price"
+                id="price"
+                class="block"
+                placeholder="Defina o preço:"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="description"
+                >Descrição: <span class="required-field">*</span></label
+              >
+              <textarea
+                name="description"
+                id="description"
+                class="block"
+                placeholder="Descreva seu veículo detalhadamente"
+              ></textarea>
+            </div>
+
+            <div class="input-group">
+              <label for="brand"
+                >Marca: <span class="required-field">*</span></label
+              >
+              <input
+                type="text"
+                name="brand"
+                id="brand"
+                class="block"
+                placeholder="Degite a marca do veículo"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="model"
+                >Modelo: <span class="required-field">*</span></label
+              >
+              <input
+                type="text"
+                name="model"
+                id="model"
+                class="block"
+                placeholder="Degite o modelo do veículo"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="mileage"
+                >Kilometragem: <span class="required-field">*</span></label
+              >
+              <input
+                type="number"
+                name="mileage"
+                id="mileage"
+                class="block"
+                placeholder="Degite a kilometragem do veículo"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="purchase_date"
+                >Ano da compra: <span class="required-field">*</span></label
+              >
+              <input
+                type="date"
+                name="purchase_date"
+                id="purchase_date"
+                class="block"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <p>Tipo de câmbio: <span class="required-field">*</span></p>
+              <input type="radio" id="manual" name="gear" />
+              <label for="manual">Manual</label>
+              <input type="radio" id="auto" name="gear" />
+              <label for="manual">Automático</label>
+            </div>
+
+            <div class="optional-input-group">
+              <p>Opcionais:</p>
+              <ul class="optional-list">
+                <li>
+                  <input
+                    type="checkbox"
+                    id="airbag"
+                    name="optional[]"
+                    value="airbag"
+                  />
+                  <label for="airbag">Airbag</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="alarm"
+                    name="optional[]"
+                    value="alarm"
+                  />
+                  <label for="alarm">Alarme</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="ac" name="optional[]" value="ac" />
+                  <label for="ac">Ar-Condicionado</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="reverse_camera"
+                    name="optional[]"
+                    value="reverse_camera"
+                  />
+                  <label for="reverse_camera">Câmera de ré</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="optional-input-group">
+              <ul class="optional-list">
+                <li>
+                  <input
+                    type="checkbox"
+                    id="lane_assist"
+                    name="optional[]"
+                    value="lane_assist"
+                  />
+                  <label for="lane_assist">Assistente de pista</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="keyless"
+                    name="optional[]"
+                    value="keyless"
+                  />
+                  <label for="keyless">Partida Keyless</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="smartphone"
+                    name="optional[]"
+                    value="smartphone"
+                  />
+                  <label for="smartphone">Integração com Smartphone</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="leather_seat"
+                    name="optional[]"
+                    value="leather_sea"
+                  />
+                  <label for="leather_seat">Banco de couro</label>
+                </li>
+              </ul>
+            </div>
+
+            <!-- photos -->
+             <div class="input-group">
+              <p>Galeria: <span class="required-field">*</span></p>
+              <input type="file" multiple accept="image/png, image/jpg" id="images" name="images" required>
+             </div>
+
+            <!-- btn enviar -->
+            <input type="submit" value="Enviar" class="btn-submit"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
