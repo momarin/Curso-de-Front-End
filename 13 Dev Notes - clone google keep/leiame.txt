@@ -1,0 +1,7 @@
+O dev notes é um clone do google keep com as seguintes funcionalidades:
+ - Adição, remoção e edição de notas
+ - notas salvas na local storage
+ - fixador de notas
+ - função copiar
+ - busca
+ - exportador CSV para uso de dados em outros softwares (excel/google sheets, por exemplo)
