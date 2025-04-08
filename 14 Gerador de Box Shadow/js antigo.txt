@@ -1,0 +1,182 @@
+// classe responsável por controlar todos os comportamentos do box shadow generator
+// -------------------------- Classes
+class BoxShadowGenerator {
+  /* A classe é inicializada por meio de um construtor que recebe vários parâmetros. Cada parâmetro está relacionado às características de uma sombra (box-shadow) e à interface visual para ajustar essas configurações. */
+  constructor(
+    horizontal,
+    horizontalReference,
+    vertical,
+    verticalReference,
+    blur,
+    blurReference,
+    spread,
+    spreadReference,
+    color,
+    colorReference,
+    opacity,
+    opacityReference,
+    inset,
+    previewBox,
+    rule,
+    webkitRule,
+    mozRule
+  ) {
+    /* Dentro do construtor, os parâmetros são atribuídos às propriedades da classe usando o this. É necessário que tudo esteja na mesma ordem para instanciação correta. */
+    this.horizontal = horizontal;
+    this.horizontalReference = horizontalReference;
+    this.vertical = vertical;
+    this.verticalReference = verticalReference;
+    this.blur = blur;
+    this.blurReference = blurReference;
+    this.spread = spread;
+    this.spreadReference = spreadReference;
+    this.color = color;
+    this.colorReference = colorReference;
+    this.opacity = opacity;
+    this.opacityReference = opacityReference;
+    this.inset = inset;
+    this.previewBox = previewBox;
+    this.rule = rule;
+    this.webkitRule = webkitRule;
+    this.mozRule = mozRule;
+  }
+
+  // -------------------------- Métodos (da classe BoxShadowGenerator)
+  //   aplicando o valor do range no input text
+  initialize() {
+    this.horizontalReference.value = this.horizontal.value;
+    this.verticalReference.value = this.vertical.value;
+    this.blurReference.value = this.blur.value;
+    this.spreadReference.value = this.spread.value;
+
+    // chamando a applyRule ao iniciar
+    this.applyRule();
+    this.showRule();
+  }
+  // regra de alteração do css da caixinha de preview
+  applyRule() {
+    this.previewBox.style.boxShadow = `${this.horizontalReference.value}px ${this.verticalReference.value}px ${this.blurReference.value}px ${this.spreadReference.value}px #000`;
+
+    // propriedade responsável por exibir a regra corrente da caixa
+    this.currentRule = this.previewBox.style.boxShadow;
+  }
+
+  // exibindo todos os parametros na screen
+  showRule() {
+    this.rule.innerText = this.currentRule;
+    this.webkitRule.innerText = this.currentRule;
+    this.mozRule.innerText = this.currentRule;
+  }
+
+  //atualizando os valores a cada alteração
+  // NAO ESQUECER DO BREAK
+  updateValue(type, value) {
+    switch (type) {
+      case "horizontal":
+        this.horizontalReference.value = value;
+        break;
+      case "vertical":
+        this.verticalReference.value = value;
+        break;
+      case "blur":
+        this.blurReference.value = value;
+        break;
+      case "spread":
+        this.spreadReference.value = value;
+        break;
+    }
+
+    // executar os métodos de regra após todos os valores de cada case serem att
+    this.applyRule();
+    this.showRule();
+  }
+}
+/* ------------------------------------------------------------------------ */
+// -------------------------- Seleção de elementos
+// características da sombra
+const horizontal = document.querySelector("#horizontal");
+const horizontalReference = document.querySelector("#horizontal-value");
+const vertical = document.querySelector("#vertical");
+const verticalReference = document.querySelector("#vertical-value");
+const blur = document.querySelector("#blur");
+const blurReference = document.querySelector("#blur-value");
+const spread = document.querySelector("#spread");
+const spreadReference = document.querySelector("#spread-value");
+const color = document.querySelector("#color");
+const colorReference = document.querySelector("#color-value");
+const opacity = document.querySelector("#opacity");
+const opacityReference = document.querySelector("#opacity-value");
+
+const inset = document.querySelector("#inset");
+
+const previewBox = document.querySelector("#box");
+
+const rule = document.querySelector("#rule span");
+const webkitRule = document.querySelector("#webkit-rule span");
+const mozRule = document.querySelector("#moz-rule span");
+
+// instanciando objeto boxshadow
+const boxShadow = new BoxShadowGenerator(
+  horizontal,
+  horizontalReference,
+  vertical,
+  verticalReference,
+  blur,
+  blurReference,
+  spread,
+  spreadReference,
+  color,
+  colorReference,
+  opacity,
+  opacityReference,
+  inset,
+  previewBox,
+  rule,
+  webkitRule,
+  mozRule
+);
+console.log(boxShadow)
+// INICIALIZAÇÃO DA BOX SHADOW
+boxShadow.initialize();
+
+/* ------------------------------------------------------------------------ */
+// -------------------------- Eventos
+// alterando a box shadow
+
+/* O evento input em JavaScript é disparado quando o valor de um elemento de entrada de dados é alterado. Ou seja -> usuário mexeu, quero que reflita a alteração na tela */
+// horizontal.addEventListener("input", (e) => {
+//   const value = e.target.value;
+
+//   boxShadow.updateValue("horizontal", value);
+// });
+
+// vertical.addEventListener("input", (e) => {
+//   const value = e.target.value;
+
+//   boxShadow.updateValue("vertical", value);
+// });
+
+// blur.addEventListener("input", (e) => {
+//   const value = e.target.value;
+
+//   boxShadow.updateValue("blur", value);
+// });
+
+// spread.addEventListener("input", (e) => {
+//   const value = e.target.value;
+
+//   boxShadow.updateValue("spread", value);
+// });
+const inputs = [
+  { element: horizontal, property: "horizontal" },
+  { element: vertical, property: "vertical" },
+  { element: blur, property: "blur" },
+  { element: spread, property: "spread" },
+];
+
+inputs.forEach(({ element, property }) => {
+  element.addEventListener("input", (e) => {
+    const value = e.target.value;
+    boxShadow.updateValue(property, value);
+  });
+});

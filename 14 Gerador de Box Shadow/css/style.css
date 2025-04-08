@@ -1,0 +1,156 @@
+* {
+  font-family: "Raleway";
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-bottom: 500px;
+  /* apenas para uso na construçao do código */
+}
+
+h2 {
+  margin-bottom: 1.6rem;
+  text-align: center;
+  color: #333;
+}
+
+#box-shadow-generator {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#controls-container,
+#preview {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Controles */
+.form-control {
+  display: flex;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px dashed #ccc;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.range-input {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* removendo estilos originais das barras */
+/* barra */
+.range-input input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  /* reaplicando estilo */
+  width: 100%;
+  height: 24px;
+  background-color: #d3d3d3;
+  outline: none;
+  border-radius: 1rem;
+}
+
+/* bolinha */
+.range-input input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  /* reaplicando estilo */
+  width: 25px;
+  height: 25px;
+  background-color: #e2bbc9;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.reference-input {
+  display: flex;
+  align-items: center;
+}
+
+.reference-input p {
+  margin-left: 4px;
+}
+
+.form-control input[type="text"] {
+  height: 30px;
+  width: 30px;
+  margin-left: 1rem;
+  text-align: center;
+}
+/* ------------------------------------------------------------------------ */
+/* Novas funcionalidades */
+#color-value {
+    min-width: 100px;
+}
+
+#inset {
+    align-self: start;
+    height: 20px;
+    width: 20px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Preview */
+#box {
+  width: 100%;
+  height: 300px;
+  background-color: #e2bbc9;
+}
+/* ------------------------------------------------------------------------ */
+/* Regras geradas */
+#generated-rule {
+  text-align: center;
+}
+
+#rules-area {
+  background-color: #d3d3d3;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 2px solid #e2bbc9;
+  padding: 1rem;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+#rules-area:hover {
+    background-color: #dfdfdf;
+}
+
+#copy-instructions {
+    font-style: italic;
+    margin-top: 1rem;
+}
+/* ------------------------------------------------------------------------ */
+/* Responsividade */
+@media(max-width: 576px) {
+    #box-shadow-generator {
+        flex-direction: column;
+    }
+
+    #controls-container,
+    #preview {
+        /* diminuindo padding inferior e superior, mantendo laterais */
+        padding: 1rem 2rem;
+    }
+
+    #box {
+        width: 80%;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    #generated-rule {
+        margin-top: 2rem;
+    }
+    
+}
