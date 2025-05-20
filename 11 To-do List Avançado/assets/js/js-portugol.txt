@@ -1,0 +1,96 @@
+// Variáveis
+definir todoForm, todoInput, todoList, editForm, editInput, cancelEditBtn, searchInput, eraseBtn, filterBtn
+definir oldInputValue
+
+// Função para salvar tarefa
+função salvarTarefa(texto, concluida = falso, salvar = verdadeiro)
+    criar elemento "div" com classe "todo"
+    criar elemento "h3" com texto = texto
+    adicionar ao elemento "div"
+    criar botão de concluir, editar e remover
+    adicionar ao elemento "div"
+    se concluida = verdadeiro, adicionar classe "done"
+    se salvar = verdadeiro, salvar tarefa no localStorage
+    adicionar "div" à lista de tarefas
+    limpar campo de entrada
+fim
+
+// Função para alternar entre formulários
+função alternarFormularios()
+    esconder/mostrar formulário de edição e de nova tarefa
+fim
+
+// Função para atualizar tarefa
+função atualizarTarefa(novoTexto)
+    para cada tarefa na tela
+        se texto da tarefa = oldInputValue
+            atualizar texto e localStorage
+fim
+
+// Função para buscar tarefas
+função buscarTarefas(busca)
+    para cada tarefa
+        se texto da tarefa não contém busca
+            esconder tarefa
+        senão
+            mostrar tarefa
+fim
+
+// Função para filtrar tarefas
+função filtrarTarefas(valor)
+    para cada tarefa
+        se valor = "all", mostrar todas
+        se valor = "done", mostrar apenas concluídas
+        se valor = "todo", mostrar apenas pendentes
+fim
+
+// Eventos
+ao enviar formulário de nova tarefa
+    impedir envio padrão
+    se campo de entrada não estiver vazio
+        chamar salvarTarefa()
+
+ao clicar em algo
+    identificar se clicou em concluir, remover ou editar
+    se concluir, alternar classe "done" e atualizar localStorage
+    se remover, remover elemento e do localStorage
+    se editar, abrir formulário de edição com valor preenchido
+
+ao cancelar edição
+    impedir envio e alternar formulários
+
+ao enviar formulário de edição
+    se novo valor não estiver vazio
+        atualizar tarefa
+        alternar formulários
+
+ao digitar na busca
+    chamar buscarTarefas()
+
+ao clicar no botão limpar
+    impedir envio, limpar campo e disparar evento de digitação
+
+ao mudar filtro
+    chamar filtrarTarefas()
+
+// LocalStorage
+função obterTarefas()
+    retornar lista do localStorage ou lista vazia
+
+função carregarTarefas()
+    obter tarefas do localStorage e adicionar na tela
+
+função salvarTarefaLocal(tarefa)
+    obter tarefas, adicionar nova e salvar de volta
+
+função removerTarefaLocal(texto)
+    remover da lista e salvar de volta
+
+função atualizarStatusTarefaLocal(texto)
+    alternar status da tarefa no localStorage
+
+função atualizarTextoTarefaLocal(textoAntigo, textoNovo)
+    encontrar tarefa e trocar o texto
+
+// Executar ao carregar página
+chamar carregarTarefas()

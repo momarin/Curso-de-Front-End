@@ -1,0 +1,171 @@
+// Seleção de elementos
+const selectors = {
+  todoForm: "#todo-form",
+  todoInput: "#todo-input",
+  todoList: "#todo-list",
+  editForm: "#edit-form",
+  editInput: "#edit-input",
+  cancelEditBtn: "#cancel-edit-btn",
+  searchInput: "#search-input",
+  eraseBtn: "#erase-button",
+  filterBtn: "#filter-select",
+};
+
+const elements = {};
+for (const key in selectors) {
+  elements[key] = document.querySelector(selectors[key]);
+}
+
+let oldInputValue;
+
+// Funções
+const createButton = (className, icon) => {
+  const btn = document.createElement("button");
+  btn.classList.add(className);
+  btn.innerHTML = `<i class="fa-solid fa-${icon}"></i>`;
+  return btn;
+};
+
+const saveTodo = (text, done = 0, save = 1) => {
+  const todo = document.createElement("div");
+  todo.classList.add("todo");
+
+  const todoTitle = document.createElement("h3");
+  todoTitle.innerText = text;
+  todo.appendChild(todoTitle);
+
+  todo.appendChild(createButton("finish-todo", "check"));
+  todo.appendChild(createButton("edit-todo", "pen"));
+  todo.appendChild(createButton("remove-todo", "xmark"));
+
+  if (done) todo.classList.add("done");
+  if (save) saveTodoLocalStorage({ text, done });
+
+  elements.todoList.appendChild(todo);
+  elements.todoInput.value = "";
+  elements.todoInput.focus();
+};
+
+const toggleForms = () => {
+  elements.editForm.classList.toggle("hide");
+  elements.todoForm.classList.toggle("hide");
+  elements.todoList.classList.toggle("hide");
+};
+
+const updateTodo = (text) => {
+  document.querySelectorAll(".todo").forEach((todo) => {
+    const titleEl = todo.querySelector("h3");
+    if (titleEl.innerText === oldInputValue) {
+      titleEl.innerText = text;
+      updateTodoLocalStorage(oldInputValue, text);
+    }
+  });
+};
+
+const getSearchTodos = (search) => {
+  const term = search.toLowerCase();
+  document.querySelectorAll(".todo").forEach((todo) => {
+    const title = todo.querySelector("h3").innerText.toLowerCase();
+    todo.style.display = title.includes(term) ? "flex" : "none";
+  });
+};
+
+const filterTodos = (filterValue) => {
+  document.querySelectorAll(".todo").forEach((todo) => {
+    const isDone = todo.classList.contains("done");
+    todo.style.display =
+      filterValue === "all" ||
+      (filterValue === "done" && isDone) ||
+      (filterValue === "todo" && !isDone)
+        ? "flex"
+        : "none";
+  });
+};
+
+// Eventos
+elements.todoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inputValue = elements.todoInput.value.trim();
+  if (inputValue) saveTodo(inputValue);
+});
+
+document.addEventListener("click", (e) => {
+  const targetEl = e.target;
+  const parentEl = targetEl.closest("div");
+  const todoTitle = parentEl?.querySelector("h3")?.innerText;
+
+  if (targetEl.classList.contains("finish-todo")) {
+    parentEl.classList.toggle("done");
+    updateTodoStatusLocalStorage(todoTitle);
+  } else if (targetEl.classList.contains("remove-todo")) {
+    parentEl.remove();
+    removeTodoLocalStorage(todoTitle);
+  } else if (targetEl.classList.contains("edit-todo")) {
+    toggleForms();
+    elements.editInput.value = todoTitle;
+    oldInputValue = todoTitle;
+  }
+});
+
+elements.cancelEditBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  toggleForms();
+});
+
+elements.editForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const editValue = elements.editInput.value.trim();
+  if (editValue) updateTodo(editValue);
+  toggleForms();
+});
+
+elements.searchInput.addEventListener("keyup", (e) => {
+  getSearchTodos(e.target.value);
+});
+
+elements.eraseBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  elements.searchInput.value = "";
+  elements.searchInput.dispatchEvent(new Event("keyup"));
+});
+
+elements.filterBtn.addEventListener("change", (e) => {
+  filterTodos(e.target.value);
+});
+
+// Local Storage
+const getTodosLocalStorage = () =>
+  JSON.parse(localStorage.getItem("todos")) || [];
+
+const saveTodoLocalStorage = (todo) => {
+  const todos = getTodosLocalStorage();
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const removeTodoLocalStorage = (text) => {
+  const todos = getTodosLocalStorage().filter((t) => t.text !== text);
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const updateTodoStatusLocalStorage = (text) => {
+  const todos = getTodosLocalStorage().map((t) =>
+    t.text === text ? { ...t, done: !t.done } : t
+  );
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const updateTodoLocalStorage = (oldText, newText) => {
+  const todos = getTodosLocalStorage().map((t) =>
+    t.text === oldText ? { ...t, text: newText } : t
+  );
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const loadTodos = () => {
+  getTodosLocalStorage().forEach((todo) =>
+    saveTodo(todo.text, todo.done, 0)
+  );
+};
+
+loadTodos();
